@@ -1,8 +1,0 @@
-# TODO: add command shell functionality:
-#       del buy milk; add go to univerity; etc
-# TODO: add "DONE" functionality. Мы пишем "done" и далее программа спрашивает
-#       "какую задачу вы выполнили?". Потом если вывести все текущие задачи
-#       то с помощью colorama выполненые задачи будут окрашены в зеленый.
-# TODO: Compress the code. Use abfuscators if needed
-# TODO: separate code into modules (like functions.py, db_connection.py etc)
-# TODO: add del_all method and functionality to choose how many tasks you want to add/del.
