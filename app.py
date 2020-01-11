@@ -6,7 +6,7 @@ from os import system
 from utils.colorama_functions import *
 from utils.tasks_crud import *
 
-col.init() # intialyizing the colorama module
+col.init() # colorama initialization
 
 # shows all functionality of the application
 def docs():
