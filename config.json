@@ -1,0 +1,24 @@
+{
+    "Project": "TODO List Application",
+    "Main backend programming language": "Python 3.7.3",
+    "OS": "Microsoft Windows 7 max x64",
+    "Date Started": "22.12.2019 (dd.mm.yyyy)",
+    "Main file": "app.py",
+    "Database type": "SQLite3",
+    "Database file": "database.db",
+    "Database encrypted": false,
+    "Database tables": [
+        "tasks"
+    ],
+    "System configuration": "Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz (4 CPUs) ~3.1GHz; 4096 RAM; DirecX 11",
+    "Python virtual enviroment module used": false,
+    "Author": "Aliyev Javid",
+    "Run": "python app.py",
+    "Program version": "0.0.1",
+    "Pip version": "19.3.1",
+    "Git used": false,
+    "Dependencies": {
+        "sqlite3": "2.6.0",
+        "colorama": "0.4.1"
+    }
+}
