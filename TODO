@@ -1,2 +1,41 @@
 SQL Injection protection
-fix Tasks.is_done() and Tasks.print(). print done tasks green
+===============================
+manage tasks using indexes
+"""
+#tasks
+1. f
+2. ff
+3. fff
+#del
+task: 2
+#tasks
+1. f
+2. fff
+#del
+task: f
+#tasks
+1. fff
+"""
+===============================
+command argument
+
+"""
+#tasks
+1. f
+2. ff
+3. fff
+#del 1
+#tasks
+1. ff
+2. fff
+#del ff
+1. fff
+#add buy-milk
+1. fff
+2. buy-milk
+"""
+
+======================================
+db_creator.sh for running db_creator.py
+======================================
+write docs and projects file structure and classes

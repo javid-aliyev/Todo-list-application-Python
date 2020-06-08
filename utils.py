@@ -18,3 +18,8 @@ def clear_console():
 		os.system("cls")
 	else:
 		os.system("clear")
+
+def print_help_info(commands):
+	print("Documentation: https://github.com/javid-aliyev/Todo-list-application-Python")
+	for index, command in enumerate(commands, 1):
+		print(f"{index}. {command}")

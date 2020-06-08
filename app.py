@@ -7,6 +7,8 @@ from tasks import Tasks
 
 class Program:
     def __init__(self):
+        self.commands = ["add", "tasks", "del", "deltasks", "done",
+                        "undone", ":quit", ":clear", ":help"]
         self.main()
 
     def execute_command(self, command):
@@ -16,15 +18,23 @@ class Program:
             Tasks.add(task)
         elif command == "tasks":
             Tasks.print()
-        elif command == "delete":
+        elif command == "del":
             task = utils.sinput("task: ")
             Tasks.delete(task)
         elif command == "deltasks":
             Tasks.delete_tasks()
+        elif command == "done":
+            task = utils.sinput("task: ")
+            Tasks.done(task)
+        elif command == "undone":
+            task = utils.sinput("task: ")
+            Tasks.undone(task)
         elif command == ":quit":
             sys.exit()
         elif command == ":clear":
             utils.clear_console()
+        elif command == ":help":
+            utils.print_help_info(self.commands)
         elif command == "":
             return
         else:

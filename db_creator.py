@@ -1,6 +1,6 @@
 """
 If there is no database.db in this project directory then you should run this
-code. It will create the database and its tables (structure)
+code. It will create the database and its tables (structure).
 """
 
 import sqlite3
