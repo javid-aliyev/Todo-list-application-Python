@@ -1,8 +1,11 @@
 """Tasks CRUD"""
 
 from database import Database
-from sqlite3 import IntegrityError
 import decorators
+from sqlite3 import IntegrityError
+import colorama
+
+colorama.init()
 
 class Tasks:
 	@staticmethod
@@ -16,12 +19,14 @@ class Tasks:
 		return tasks
 
 	@staticmethod
-	@decorators.green_output
 	def print():
-		"""Prints all tasks"""
+		"""Prints all tasks. Done tasks marked green"""
 		tasks = Tasks.get()
 		for index, task in enumerate(tasks, 1):
-			print(f"{index}. {task}")
+			if Tasks.is_done(task):
+				print(f"{colorama.Fore.BLUE}{index}.{colorama.Style.RESET_ALL} {colorama.Fore.GREEN}{task}{colorama.Style.RESET_ALL}")
+			else:
+				print(f"{colorama.Fore.BLUE}{index}.{colorama.Style.RESET_ALL} {task}")
 
 	@staticmethod
 	@decorators.green_output
@@ -39,6 +44,7 @@ class Tasks:
 					return
 
 	@staticmethod
+	@decorators.red_output
 	def delete(task):
 		"""Removes a task if the task is in database
 		:param task: str
@@ -48,11 +54,9 @@ class Tasks:
 			if task in tasks:
 				cursor.execute(f"DELETE FROM tasks WHERE task = '{task}'")
 				print(f"'{task}' was successfully removed")
-			else:
-				print("no such task")
-				return
 
 	@staticmethod
+	@decorators.red_output
 	def delete_tasks():
 		"""Removes all tasks"""
 		with Database() as cursor:
@@ -60,6 +64,7 @@ class Tasks:
 			print(f"all tasks were successfully removed")
 
 	@staticmethod
+	@decorators.green_output
 	def done(task):
 		"""Notes in the database that the task has been completed
 		:param task: str
@@ -69,22 +74,24 @@ class Tasks:
 			if task in tasks:
 				cursor.execute(f"UPDATE tasks SET is_done = 1 WHERE task = '{task}'")
 				print(f"the task {task} was marked completed")
-			else:
-				print("no such task")
-				return
 
 	@staticmethod
-	def is_done(task):
-		"""If the task is done then it returns True
-		:param task: str
-		:return: bool
-		"""
-
-		"""REWRITE!"""
+	def undone(task):
+		"""Notes in the database that the task has not been completed"""
 		tasks = Tasks.get()
 		with Database() as cursor:
 			if task in tasks:
-				result = cursor.execute(f"SELECT is_done FROM tasks WHERE task = '{task}'").fetchall()
-				return result
+				cursor.execute(f"UPDATE tasks SET is_done = 0 WHERE task = '{task}'")
+				print(f"the task {task} was marked in-progress")
 
-# print(Tasks.is_done("go to the doctor"))
+	@staticmethod
+	def is_done(task):
+		"""If the task is done then it returns True otherwise False
+		:param task: str
+		:return: bool
+		"""
+		tasks = Tasks.get()
+		with Database() as cursor:
+			if task in tasks:
+				result = cursor.execute(f"SELECT * FROM tasks WHERE task = '{task}'").fetchone()
+				return bool(result[2]) # result[2] is is_done column
