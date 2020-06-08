@@ -1,41 +1,13 @@
-SQL Injection protection
-===============================
-manage tasks using indexes
-"""
-#tasks
-1. f
-2. ff
-3. fff
-#del
-task: 2
-#tasks
-1. f
-2. fff
-#del
-task: f
-#tasks
-1. fff
-"""
-===============================
-command argument
+#Hack:
+-- SQL Injection Protection
 
-"""
-#tasks
-1. f
-2. ff
-3. fff
-#del 1
-#tasks
-1. ff
-2. fff
-#del ff
-1. fff
-#add buy-milk
-1. fff
-2. buy-milk
-"""
+#Perhaps:
+-- db_creator.sh running db_creator.py
 
-======================================
-db_creator.sh for running db_creator.py
-======================================
-write docs and projects file structure and classes
+#Add:
+-- write documentation and explain project's file structure and classes
+-- write LICENSE
+-- accounts (feature)
+
+#Rewrite:
+-- rewrite Tasks.execute_command() (bind method with self.commands)
