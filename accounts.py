@@ -8,6 +8,8 @@ import decorators
 from sqlite3 import IntegrityError
 
 class Accounts:
+	account_id = 1 # guest | curr_account_id
+
 	@staticmethod
 	def get():
 		"""Returns all accounts from the database
@@ -55,11 +57,15 @@ class Accounts:
 	@staticmethod
 	def get_password_by_username(username):
 		with Database() as cursor:
-			return cursor.execute(
-				f"SELECT * FROM accounts WHERE username = '{username}'"
-			).fetchone()[2]
+			try:
+				return cursor.execute(
+					f"SELECT * FROM accounts WHERE username = '{username}'"
+				).fetchone()[2]
+			except TypeError:
+				return
 
 	@staticmethod
+	@decorators.blue_output
 	def print():
 		"""Prints all accounts in the database"""
 		accounts = Accounts.get()
@@ -94,3 +100,16 @@ class Accounts:
 				)
 				print(f"the '{username}' account was successfully removed")
 
+	@staticmethod
+	def authorize(username):
+		"""Authorizes user. Changes Tasks account_id.
+		username is account to login
+		:param username: str
+		"""
+		Accounts.account_id = Accounts.get_id_by_username(username)
+		print(f"logged in as {Accounts.get_username_by_id(Accounts.account_id)}")
+
+	@staticmethod
+	@decorators.green_output
+	def whoami():
+		print(Accounts.get_username_by_id(Accounts.account_id))

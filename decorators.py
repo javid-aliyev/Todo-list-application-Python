@@ -22,3 +22,12 @@ def red_output(fn):
 		print(colorama.Style.RESET_ALL, end="")
 		return result
 	return wrapper
+
+def blue_output(fn):
+	@functools.wraps(fn)
+	def wrapper(*args, **kwargs):
+		print(colorama.Fore.BLUE, end="")
+		result = fn(*args, **kwargs)
+		print(colorama.Style.RESET_ALL, end="")
+		return result
+	return wrapper

@@ -10,9 +10,9 @@ class Program:
 	def __init__(self):
 		self.commands = ["add", "ls", "rm", "rmall", "done",
 						"undone", ":whoami", ":addacc", ":rmacc",
-						"lsaccs", ":login", ":quit", ":clear",
+						":lsaccs", ":login", ":quit", ":clear",
 						":help"]
-		self.curr_account = Accounts.get_username_by_id(Tasks.account_id)
+		self.curr_account = Accounts.get_username_by_id(Accounts.account_id)
 		self.main()
 
 	def execute_command(self, command):
@@ -40,7 +40,8 @@ class Program:
 		elif command == ":help":
 			utils.print_help_info(self.commands)
 		elif command == ":whoami":
-			print(self.curr_account)
+			# print(self.curr_account)
+			Accounts.whoami()
 		elif command == ":addacc":
 			new_account_username = utils.sinput("username? ")
 			new_account_password = utils.secured_sinput("password? ")
@@ -57,7 +58,11 @@ class Program:
 		elif command == ":lsaccs":
 			Accounts.print()
 		elif command == ":login":
-			pass
+			account_to_login = utils.sinput("username: ")
+			npt_password_of_account_to_login = utils.secured_sinput("password: ")
+			real_password_of_account_to_login = Accounts.get_password_by_username(account_to_login)
+			if npt_password_of_account_to_login == real_password_of_account_to_login:
+				Accounts.authorize(account_to_login)
 		elif command == "":
 			return
 		else:
@@ -65,7 +70,7 @@ class Program:
 
 	def main(self):
 		while True:
-			self.curr_account = Accounts.get_username_by_id(Tasks.account_id)
+			self.curr_account = Accounts.get_username_by_id(Accounts.account_id)
 			command = utils.sinput("# ")
 			self.execute_command(command)
 
