@@ -1,13 +1,20 @@
 #Hack:
--- SQL Injection Protection
+	-- SQL Injection Protection
+
+#Bug:
+	-- :rmacc command from app.py. It doesn't remove account
 
 #Perhaps:
--- db_creator.sh running db_creator.py
+	-- create db_creator.sh running db_creator.py
 
 #Add:
--- write documentation and explain project's file structure and classes
--- write LICENSE
--- accounts (feature)
+	-- write documentation and explain project's file structure and classes
+	-- write LICENSE
+	-- accounts (feature)
 
 #Rewrite:
--- rewrite Tasks.execute_command() (bind method with self.commands)
+	-- rewrite Tasks.execute_command() (bind method with self.commands)
+
+@Working-at-the-moment:
+	-- Add.accounts (feature)
+	-- Bug.:rmacc command from app.py. It doesn't remove account

@@ -2,31 +2,39 @@
 
 from database import Database
 import decorators
+from accounts import Accounts
+
 from sqlite3 import IntegrityError
 import colorama
 
 colorama.init()
 
 class Tasks:
+	account_id = 1 # guest
+	account = Accounts.get_username_by_id(account_id)
+
 	@staticmethod
 	def get():
-		"""Returns a list of tasks
+		"""Returns a list of tasks of account
 		:return: list
 		"""
 		with Database() as cursor:
-			executed = cursor.execute("SELECT * FROM tasks")
+			executed = cursor.execute(
+				f"SELECT * FROM tasks WHERE account_id = {Tasks.account_id}"
+			)
 			tasks = [i[1] for i in executed]
 		return tasks
 
 	@staticmethod
 	def print():
-		"""Prints all tasks. Done tasks marked green"""
+		"""Prints all tasks of the account. Done tasks marked green"""
 		tasks = Tasks.get()
 		for index, task in enumerate(tasks, 1):
-			if Tasks.is_done(task):
-				print(f"{colorama.Fore.BLUE}{index}.{colorama.Style.RESET_ALL} {colorama.Fore.GREEN}{task}{colorama.Style.RESET_ALL}")
-			else:
-				print(f"{colorama.Fore.BLUE}{index}.{colorama.Style.RESET_ALL} {task}")
+			if Tasks.belongs_to_account(task):
+				if Tasks.is_done(task):
+					print(f"{colorama.Fore.BLUE}{index}.{colorama.Style.RESET_ALL} {colorama.Fore.GREEN}{task}{colorama.Style.RESET_ALL}")
+				else:
+					print(f"{colorama.Fore.BLUE}{index}.{colorama.Style.RESET_ALL} {task}")
 
 	@staticmethod
 	@decorators.green_output
@@ -37,16 +45,17 @@ class Tasks:
 		with Database() as cursor:
 			if task:
 				try:
-					cursor.execute(f"INSERT INTO tasks ('task', 'is_done') VALUES ('{task}', 0)")
+					cursor.execute(
+						f"INSERT INTO tasks ('task', 'is_done', 'account_id') VALUES ('{task}', 0, {Tasks.account_id})"
+					)
 					print(f"task '{task}' was successfully created!")
 				except IntegrityError:
 					print("task must be unique")
-					return
 
 	@staticmethod
 	@decorators.red_output
 	def delete(task):
-		"""Removes a task if the task is in database
+		"""Removes a task if the task belongs to the current user
 		:param task: str
 		"""
 		tasks = Tasks.get()
@@ -60,8 +69,8 @@ class Tasks:
 	def delete_tasks():
 		"""Removes all tasks"""
 		with Database() as cursor:
-			cursor.execute("DELETE FROM tasks")
-			print(f"all tasks were successfully removed")
+			cursor.execute(f"DELETE FROM tasks WHERE account_id = '{Tasks.account_id}'")
+			print(f"all {Tasks.account}'s tasks were successfully removed")
 
 	@staticmethod
 	@decorators.green_output
@@ -95,3 +104,13 @@ class Tasks:
 			if task in tasks:
 				result = cursor.execute(f"SELECT * FROM tasks WHERE task = '{task}'").fetchone()
 				return bool(result[2]) # result[2] is is_done column
+
+	@staticmethod
+	def belongs_to_account(task):
+		"""Checks if the task belongs to the account(account_id)
+		:param task: str
+		:return: bool
+		"""
+		tasks = Tasks.get()
+		return task in tasks
+

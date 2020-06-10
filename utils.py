@@ -2,6 +2,7 @@
 
 import platform
 import os
+import getpass
 
 OS = platform.system().lower()
 
@@ -10,6 +11,12 @@ def sinput(ps):
 	try:
 		npt = input(ps).strip()
 		return npt
+	except (KeyboardInterrupt, EOFError):
+		return
+
+def secured_sinput(ps):
+	try:
+		npt = getpass.getpass(ps).strip()
 	except (KeyboardInterrupt, EOFError):
 		return
 
