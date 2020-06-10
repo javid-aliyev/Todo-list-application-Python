@@ -1,20 +1,37 @@
+!=====In-Progress=====
 #Hack:
 	-- SQL Injection Protection
 
 #Bug:
-	-- :rmacc command from app.py. It doesn't remove account
+	-- When account creates new task and if then account will be deleted then
+	-- his tasks are still stayed in the database. Fix it.
 
 #Perhaps:
 	-- create db_creator.sh running db_creator.py
 
 #Add:
 	-- write documentation and explain project's file structure and classes
+
 	-- write LICENSE
-	-- accounts (feature)
 
 #Rewrite:
 	-- rewrite Tasks.execute_command() (bind method with self.commands)
 
+#Change:
+
+
+!=====Now=====
 @Working-at-the-moment:
-	-- Add.accounts (feature)
-	-- Bug.:rmacc command from app.py. It doesn't remove account
+
+
+!=====Done=====
+#Bug:
+-- :rmacc command from app.py. It doesn't remove account
+
+#Add:
+-- accounts (feature)
+
+#Change:
+-- now main (origin) variable is storing current_account_id in Tasks
+-- class. I should store it in Accounts class. But after changing location
+-- of this variable I should modifie Accounts' & Tasks' methods

@@ -10,9 +10,6 @@ import colorama
 colorama.init()
 
 class Tasks:
-	account_id = 1 # guest
-	account = Accounts.get_username_by_id(account_id)
-
 	@staticmethod
 	def get():
 		"""Returns a list of tasks of account
@@ -20,7 +17,7 @@ class Tasks:
 		"""
 		with Database() as cursor:
 			executed = cursor.execute(
-				f"SELECT * FROM tasks WHERE account_id = {Tasks.account_id}"
+				f"SELECT * FROM tasks WHERE account_id = {Accounts.account_id}"
 			)
 			tasks = [i[1] for i in executed]
 		return tasks
@@ -44,13 +41,16 @@ class Tasks:
 		"""
 		with Database() as cursor:
 			if task:
-				try:
-					cursor.execute(
-						f"INSERT INTO tasks ('task', 'is_done', 'account_id') VALUES ('{task}', 0, {Tasks.account_id})"
-					)
-					print(f"task '{task}' was successfully created!")
-				except IntegrityError:
-					print("task must be unique")
+				if not '\'' in task:
+					try:
+						cursor.execute(
+							f"INSERT INTO tasks ('task', 'is_done', 'account_id') VALUES ('{task}', 0, {Accounts.account_id})"
+						)
+						print(f"task '{task}' was successfully created!")
+					except IntegrityError:
+						print("task must be unique. maybe any other account has same task")
+				else:
+					print("there must be no ' char in task")
 
 	@staticmethod
 	@decorators.red_output
@@ -69,8 +69,8 @@ class Tasks:
 	def delete_tasks():
 		"""Removes all tasks"""
 		with Database() as cursor:
-			cursor.execute(f"DELETE FROM tasks WHERE account_id = '{Tasks.account_id}'")
-			print(f"all {Tasks.account}'s tasks were successfully removed")
+			cursor.execute(f"DELETE FROM tasks WHERE account_id = '{Accounts.account_id}'")
+			print(f"all {Accounts.get_username_by_id(Accounts.account_id)}'s tasks were successfully removed")
 
 	@staticmethod
 	@decorators.green_output
@@ -85,6 +85,7 @@ class Tasks:
 				print(f"the task {task} was marked completed")
 
 	@staticmethod
+	@decorators.green_output
 	def undone(task):
 		"""Notes in the database that the task has not been completed"""
 		tasks = Tasks.get()
@@ -102,7 +103,9 @@ class Tasks:
 		tasks = Tasks.get()
 		with Database() as cursor:
 			if task in tasks:
-				result = cursor.execute(f"SELECT * FROM tasks WHERE task = '{task}'").fetchone()
+				result = cursor.execute(
+					f"SELECT * FROM tasks WHERE task = '{task}'"
+				).fetchone()
 				return bool(result[2]) # result[2] is is_done column
 
 	@staticmethod

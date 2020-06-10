@@ -17,6 +17,7 @@ def sinput(ps):
 def secured_sinput(ps):
 	try:
 		npt = getpass.getpass(ps).strip()
+		return npt
 	except (KeyboardInterrupt, EOFError):
 		return
 
