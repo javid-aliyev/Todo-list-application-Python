@@ -8,6 +8,7 @@ import sqlite3
 connection = sqlite3.connect("database.db")
 cursor = connection.cursor()
 
+# creating accounts table
 cursor.execute("""
 CREATE TABLE `accounts` (
 	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,6 +17,7 @@ CREATE TABLE `accounts` (
 );
 """)
 
+# creating tasks table
 cursor.execute("""
 CREATE TABLE `tasks` (
 	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,6 +25,11 @@ CREATE TABLE `tasks` (
 	`is_done`	INTEGER NOT NULL,
 	`account_id`	INTEGER
 );
+""")
+
+# adding to accounts table guest account
+cursor.execute("""
+INSERT INTO accounts ('username', 'password') VALUES ('guest', 'root')
 """)
 
 connection.commit()

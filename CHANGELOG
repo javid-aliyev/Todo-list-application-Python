@@ -1,2 +1,4 @@
 Juny 12th 2020 | Javid Aliyev
 -- Deny guest account deletion
+-- [15:05] Make the :lsaccs show on which account the user
+-- is currently (mark in green)

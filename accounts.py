@@ -6,6 +6,9 @@ from database import Database
 import decorators
 
 from sqlite3 import IntegrityError
+import colorama
+
+colorama.init()
 
 class Accounts:
 	account_id = 1 # guest | curr_account_id
@@ -65,12 +68,15 @@ class Accounts:
 				return
 
 	@staticmethod
-	@decorators.blue_output
 	def print():
 		"""Prints all accounts in the database"""
 		accounts = Accounts.get()
+		curr_account = Accounts.get_username_by_id(Accounts.account_id)
 		for account in accounts:
-			print(f"~ {account}")
+			if account == curr_account:
+				print(f"~ {colorama.Fore.GREEN}{account}{colorama.Style.RESET_ALL}")
+			else:
+				print(f"~ {colorama.Fore.BLUE}{account}{colorama.Style.RESET_ALL}")
 
 	@staticmethod
 	def add(username, password):
