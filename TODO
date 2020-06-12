@@ -7,15 +7,19 @@
 	-- his tasks are still stayed in the database. Fix it.
 
 #Perhaps:
-	-- create db_creator.sh running db_creator.py
+	-- Create db_creator.sh running db_creator.py
 
 #Add:
-	-- write documentation and explain project's file structure and classes
-
-	-- write LICENSE
+	-- Write documentation and explain project's file structure and classes
+	-- Write LICENSE
 
 #Rewrite:
-	-- rewrite Tasks.execute_command() (bind method with self.commands)
+	-- Rewrite Tasks.execute_command() (bind method with self.commands)
+	-- Remove Accounts.delete_tasks_of_another_account and make a
+	-- universal method to delete all tasks of given account (rewrite Tasks.delete)
+	-- and part of app.py that works with that function
+	-- Make the :lsaccs show on which account the user
+	-- is currently (mark in green)
 
 #Change:
 
@@ -29,9 +33,10 @@
 -- :rmacc command from app.py. It doesn't remove account
 
 #Add:
--- accounts (feature)
+-- Accounts (feature)
+-- Deny guest account deletion
 
 #Change:
--- now main (origin) variable is storing current_account_id in Tasks
+-- Now main (origin) variable storing current_account_id is in Tasks
 -- class. I should store it in Accounts class. But after changing location
--- of this variable I should modifie Accounts' & Tasks' methods
+-- of this variable I must modifie Accounts' & Tasks' methods

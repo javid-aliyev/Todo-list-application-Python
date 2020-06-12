@@ -93,7 +93,7 @@ class Accounts:
 		"""Deletes given account
 		:param account: str
 		"""
-		if username:
+		if username and username != "guest": # guest account can not be removed
 			with Database() as cursor:
 				cursor.execute(
 					f"DELETE FROM accounts WHERE username = '{username}'"
