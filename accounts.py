@@ -5,7 +5,7 @@ CRUD for accounts
 from database import Database
 import decorators
 
-from sqlite3 import IntegrityError
+from sqlite3 import IntegrityError, OperationalError
 import colorama
 
 colorama.init()
@@ -64,7 +64,7 @@ class Accounts:
 				return cursor.execute(
 					f"SELECT * FROM accounts WHERE username = '{username}'"
 				).fetchone()[2]
-			except TypeError:
+			except (TypeError, OperationalError):
 				return
 
 	@staticmethod
