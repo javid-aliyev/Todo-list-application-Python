@@ -1,4 +1,7 @@
-Juny 12th 2020 | Javid Aliyev
+June 12th 2020 | Javid Aliyev
 -- Deny guest account deletion
 -- [15:05] Make the :lsaccs show on which account the user
--- is currently (mark in green)
+is currently (mark in green)
+
+June 14th 2020 | Javid Aliyev
+-- [00:08] SQL Injection Protection {for some reason it is impossible to make sql injection so i do not need to write sql injection protection. it is already here}
