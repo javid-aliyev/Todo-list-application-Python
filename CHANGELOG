@@ -3,5 +3,9 @@ June 12th 2020 | Javid Aliyev
 -- [15:05] Make the :lsaccs show on which account the user
 is currently (mark in green)
 
+<<<<<<< HEAD
 June 14th 2020 | Javid Aliyev
+=======
+Juny 14th 2020 | Javid Aliyev
+>>>>>>> 4cbcd0fe1b4217f71f71b7ef200176a01bff2599
 -- [00:08] SQL Injection Protection {for some reason it is impossible to make sql injection so i do not need to write sql injection protection. it is already here}
