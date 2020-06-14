@@ -24,8 +24,7 @@
 
 !=====Now=====
 @Working-at-the-moment:
-#Hack:
-	-- SQL Injection Protection
+
 
 !=====Done=====
 #Bug:
@@ -43,3 +42,7 @@
 #Rewrite:
 -- Make the :lsaccs show on which account the user
 -- is currently (mark in green)
+
+#Hack:
+-- SQL Injection Protection {for some reason it is impossible to make sql injection
+-- so i do not need to write sql injection protection. it is already here}
