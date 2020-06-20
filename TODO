@@ -20,7 +20,7 @@
 	-- and part of app.py that works with that function
 
 #Change:
-
+    -- install_requirements.sh -> setup.py. install setuptools
 
 !=====Now=====
 @Working-at-the-moment:
