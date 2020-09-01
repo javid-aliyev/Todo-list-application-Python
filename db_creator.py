@@ -1,36 +1,58 @@
 """
-If there is no database.db in this project directory then you should run this
-code. It will create the database and its tables (structure).
+Creates json files in json/ dir
 """
 
-import sqlite3
+import os
+import json
 
-connection = sqlite3.connect("database.db")
-cursor = connection.cursor()
+from tools import commands, info, success, warn
+from db_config import *
 
-# creating accounts table
-cursor.execute("""
-CREATE TABLE `accounts` (
-	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
-	`username`	TEXT NOT NULL UNIQUE,
-	`password`	TEXT NOT NULL
-);
-""")
 
-# creating tasks table
-cursor.execute("""
-CREATE TABLE `tasks` (
-	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
-	`task`	TEXT NOT NULL UNIQUE,
-	`is_done`	INTEGER NOT NULL,
-	`account_id`	INTEGER
-);
-""")
+def create_database():
+	# DB_PATH directory and DB_PATH/json
+	try:
+		os.chdir(DB_PARENT_DIR) # cd /opt
+		os.mkdir(DB_DIR_NAME) # mkdir to-do-list-application/
+		os.chdir(DB_PATH) # cd /opt/to-do-list-application
+		os.mkdir("json")
+	except FileExistsError:
+		pass
 
-# adding to accounts table guest account
-cursor.execute("""
-INSERT INTO accounts ('username', 'password') VALUES ('guest', 'root')
-""")
 
-connection.commit()
-connection.close()
+	# json/accounts.json file
+	accounts_json = os.path.join(DB_PATH, "json", "accounts.json")
+	with open(accounts_json, "wt") as jfl:
+		jfl.write(json.dumps({"guest": "root"}, sort_keys=True, indent=4))
+
+
+	# json/tasks.json file
+	tasks_json = os.path.join(DB_PATH, "json", "tasks.json")
+	with open(tasks_json, "wt") as jfl:
+		jfl.write(
+			json.dumps({
+				"guest": {
+					"test task #1": False,
+					"test task #2": False
+				}
+			}, sort_keys=True, indent=4)
+		)
+
+
+	# json/core.json file
+	core_json = os.path.join(DB_PATH, "json", "core.json")
+	with open(core_json, "wt") as jfl:
+		jfl.write(json.dumps(
+			{"commands": commands}, sort_keys=True, indent=4
+		))
+
+
+print(f"Do you want to create or overwrite the database({DB_PATH})? [y/n]")
+warn("!!that process will overwrite the database!!")
+npt = input("")
+if len(npt) > 0 and npt[0].lower() != "n":
+	create_database()
+	success("(+) The database was created or overwritten")
+else:
+	info("(=) Abort")
+	

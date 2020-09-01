@@ -1,48 +1,69 @@
-!=====In-Progress=====
+========================Ice-Box========================
 #Hack:
-	-- SQL Injection Protection
+	-- * 
 
 #Bug:
-	-- When account creates new task and if then account will be deleted then
+	-- * When account creates new task and if then account will be deleted then
 	-- his tasks are still stayed in the database. Fix it.
 
 #Perhaps:
-	-- Create db_creator.sh running db_creator.py
-
-#Add:
-	-- Write documentation and explain project's file structure and classes
-	-- Write LICENSE
+	-- * Create db_creator.sh running db_creator.py
 
 #Rewrite:
-	-- Rewrite Tasks.execute_command() (bind method with self.commands)
-	-- Remove Accounts.delete_tasks_of_another_account and make a
+	-- * Rewrite Tasks.execute_command() (bind method with self.commands)
+	-- * Remove Accounts.delete_tasks_of_another_account and make a
 	-- universal method to delete all tasks of given account (rewrite Tasks.delete)
 	-- and part of app.py that works with that function
 
+#Add:
+	-- * Write documentation and explain project's file structure and classes
+	-- * Write LICENSE
+	-- * !!! Make first build
+	-- * backups feature
+
 #Change:
+	-- * Rewrite the project. Правильно использовать ООП, а также область имен.
+	-- Accounts использует Tasks и т.д. Переписать короче архитектуру программы чтобы
+	-- улучшать её было удобно (например я не смог починить первый баг в графе #Bug из-за
+	-- того что питон не поддерживает перекрёстное импортирование (это кста свидетельство
+	-- того что архитектура проги плохая)). Также добавить миксины и пару базовых классов
+	-- чтобы не повторять один и тот же код. Использовать Инкапсуляцию в рамках _<var> и
+	-- getter'ов и setter'ов (короче ту Инкапсуляцию которую питон поддерживает).
+	-- А также использовать Полиморфизм и Наследование.
+	-- * Переписать полностью архитектуру и программы и базы данных (для каждого аккаунта
+	-- будет отдельная таблица тасков. а при удалении аккаунта просто надо удалить его из
+	-- аккаунтс тэйбл и удалить таблицу тасков этого аккаунта)
+	-- * !!! Maybe json instead of sqlite dbms
+	-- * !!! logging and tests
+	-- * !!! maybe ~/.to-do-list-app dir for database or f"/home/{os.login()}/.to-do-list-app/" for database (no /opt)
 
-
-!=====Now=====
+========================In-Progress========================
 @Working-at-the-moment:
+-- * Fix task.Task.get and account.Account.create
+-- * JSON instead of sqlite3 (overwrite all code)
 
+========================Nearly-Done-or-Done========================
+-- * !!! Static folder for database on system instead of json/ dir in project
+-- for example: /var/lib/to-do-list-application or tmp/.... or /opt or /etc
+-- DIR: /opt/to-do-list-application
 
-!=====Done=====
+========================Done========================
 #Bug:
--- :rmacc command from app.py. It doesn't remove account
+-- * :rmacc command from app.py. It doesn't remove account
 
 #Add:
--- Accounts (feature)
--- Deny guest account deletion
+-- * Accounts (feature)
+-- * Deny guest account deletion
 
 #Change:
--- Now main (origin) variable storing current_account_id is in Tasks
+-- * Now main (origin) variable storing current_account_id is in Tasks
 -- class. I should store it in Accounts class. But after changing location
 -- of this variable I must modifie Accounts' & Tasks' methods
 
 #Rewrite:
--- Make the :lsaccs show on which account the user
+-- * Make the :lsaccs show on which account the user
 -- is currently (mark in green)
 
 #Hack:
--- SQL Injection Protection {for some reason it is impossible to make sql injection
+-- * SQL Injection Protection {for some reason it is impossible to make sql injection
 -- so i do not need to write sql injection protection. it is already here}

@@ -1,4 +1,7 @@
-database.db
-files/
+# [[[sqlite dbms]]]
+# database.db
+# database.db-journal
+
 __pycache__/
-database.db-journal
+LILTODO
+BIGTODO
