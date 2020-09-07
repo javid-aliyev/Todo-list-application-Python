@@ -7,9 +7,20 @@ from account import Account
 class App:
 	def __init__(self, argv):
 		self._argv = argv
-		self.id2task = {} # tools._id2task
+		self.id2task = {}
 		self.account = "guest" # current account
 		self.main()
+
+	def _id2task(self, tasks):
+		"""Returns a dict where key is index, value is tuple,
+		where [0] is task and [1] is status
+		:param tasks: dict
+		:return: dict
+		"""
+		result = {}
+		for index, task in zip(range(1,len(tasks)+1), tasks.items()):
+			result[index] = task
+		return result
 
 	def _execute_command(self, command):
 		"""Executes a given command (account param is current active account)
@@ -21,26 +32,31 @@ class App:
 			task = tools._sinput("task? ").strip()
 			if task != "":
 				Task.create(task, self.account)
-		elif command == "rm": # add index feature
-			task = tools._sinput("task to remove? ").strip()
-			if task != "":
-				Task.remove(task, self.account)
+
 		elif command == "rmall":
-			Task.remove_accounts_tasks(self.account)
+			Task.remove_accounts_tasks_without_slot(self.account)
+
 		elif command == "ls":
 			tasks = Task.get(self.account)
 			if tasks:
-				for task in tasks.items():
+				for i, task in zip(range(1, len(tasks)+1), tasks.items()):
 					if task[1]:
-						tools.success(f"* {task[0]}") # green output print
+						tools.success(f"{i}. {task[0]}") # green output print
 					else:
-						print(f"* {task[0]}")
+						print(f"{i}. {task[0]}")
+
+		# FIX NEXT 8 lines (find more elegant answer). Also tools.process.. is tmp function
+		elif command == "rm":
+			print("{index_of_task} or \\{task_name}")
+			tools.process_task_or_index(self.id2task, command, self.account, Task.remove)
+
 		elif command == "done":
-			task = tools._sinput("task? ")
-			Task.mark_as(task, self.account, done=True)
+			print("{index_of_task} or \\{task_name}")
+			tools.process_task_or_index(self.id2task, command, self.account, Task.mark_as, done=True)
+
 		elif command == "undone":
-			task = tools._sinput("task? ")
-			Task.mark_as(task, self.account, done=False)
+			print("{index_of_task} or \\{task_name}")
+			tools.process_task_or_index(self.id2task, command, self.account, Task.mark_as, done=False)
 
 		# account
 		elif command == "addacc":
@@ -52,6 +68,7 @@ class App:
 				Account.create(login, password)
 				# a slot in tasks.json
 				Task.create_slot_for(login)
+
 		elif command == "rmacc":
 			account = tools._sinput("account to remove? ")
 			password = tools._secured_sinput("password of the account? ")
@@ -66,12 +83,14 @@ class App:
 			if password == real_password:
 				Account.remove(account)
 				Task.remove_accounts_tasks(account)
+
 		elif command == "lsaccs":
 			for account in Account.get():
 				if account == self.account:
 					tools.success(f"* {account}")
 				else:
 					print(f"* {account}")
+
 		elif command == "login":
 			account = tools._sinput("account to login? ")
 			password = tools._secured_sinput("password of the account? ")
@@ -85,6 +104,7 @@ class App:
 				tools.success(f"you logged in as {account}")
 			else:
 				tools.error("invalid login or password")
+
 		elif command == "whoami":
 			tools.success(self.account)
 
@@ -101,7 +121,9 @@ class App:
 			tools.error(f"no such command: '{command}'")
 
 	def main(self):
+		print("type ':help' to get all commands")
 		while True:
+			self.id2task = self._id2task(Task.get(self.account))
 			npt = tools._sinput("~> ").strip()
 			self._execute_command(npt)
 

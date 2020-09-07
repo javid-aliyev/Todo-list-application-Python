@@ -13,7 +13,8 @@ guest account's password: __root__
 | whoami  | shows which account is active at the moment |
 
 ## Extra information
-_Info_: You can also use the account feature not only if several users on the same device run the program at different times, but even when one user has several tasks that are related, for example, with different projects, etc.
+_Info_:
+You can also use the account feature not only if several users on the same device run the program at different times, but even when one user has several tasks that are related, for example, with different projects, etc.
 Also you can make several accounts for yourself (javid.open, javid.private)
 
 # Tasks
@@ -32,6 +33,9 @@ Tasks are associated with an account
 ## Extra information
 Extra info:
 1. If the ls command displayed the task green then the task is done. Otherwise it is not
+2. With `rm`, `done` and `undone` commands you can write an index of a task.
+Write \ and then the full task name or just write index of a task.
+for example: \buy milk, 2, 12, \do homework.
 
 ## Task status
 Task statuses: `done` or `in-progress`
