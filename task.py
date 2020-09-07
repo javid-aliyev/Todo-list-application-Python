@@ -7,7 +7,7 @@ from db_config import *
 class Task:
 	@staticmethod
 	def remove_accounts_tasks(account):
-		"""Removes all tasks of an account
+		"""Removes all tasks of an account (and its "slot")
 		:account: str
 		"""
 		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
@@ -15,7 +15,22 @@ class Task:
 
 		if account != "guest":
 			data.pop(account, None)
-			tools.warn(f"all tasks of '{account}' account were removed")
+			tools.warn(f"all tasks of '{account}' account were removed (and slot)")
+
+		# save new data
+		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
+			json.dump(data, jfl, sort_keys=True, indent=4)
+
+	@staticmethod
+	def remove_accounts_tasks_without_slot(account):
+		"""Removes all tasks of an account (but stores its slot)
+		:account: str
+		"""
+		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
+			data = json.load(jfl)
+
+		data[account] = {}
+		tools.warn(f"all tasks of '{account}' account were removed")
 
 		# save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:

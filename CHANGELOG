@@ -5,3 +5,6 @@ is currently (mark in green)
 
 June 14th 2020 | Javid Aliyev
 -- [00:08] SQL Injection Protection {for some reason it is impossible to make sql injection so i do not need to write sql injection protection. it is already here}
+
+September 7th 2020 | Javid Aliyev
+-- [23:32] Good documentation, pure functions, thoughtful architecture of the program and modules, from sqlite dbms to pure json, dir for application's database on a system (/opt/to-do-list-application)

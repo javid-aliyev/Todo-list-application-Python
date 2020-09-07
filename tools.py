@@ -56,6 +56,33 @@ def _print_help_info():
 	for index, command in enumerate(commands, 1):
 		print(f"{index}. {command}")
 
+def process_task_or_index(id2task, command, account, fn, done=None):
+	# FIX: THIS FUNCTION IS NOT READABLE
+	if command == "rm":
+		task = _sinput("task to remove? ").strip()
+		try:
+			if task[0] == "\\":
+				fn(task[1:], account)
+			else:
+				try:
+					fn(id2task.get(int(task))[0], account)
+				except (ValueError, TypeError):
+					return
+		except IndexError:
+			pass
+	else:
+		task = _sinput("task? ").strip()
+		try:
+			if task[0] == "\\":
+				fn(task[1:], account, done=done)
+			else:
+				try:
+					fn(id2task.get(int(task))[0], account, done=done)
+				except ValueError:
+					pass
+		except IndexError:
+			pass
+
 # ========
 # Messages
 # ========
