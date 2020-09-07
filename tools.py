@@ -3,7 +3,6 @@
 import platform
 import os
 import getpass
-import json
 import sys
 
 from decorators import *
