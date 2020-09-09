@@ -8,3 +8,7 @@ June 14th 2020 | Javid Aliyev
 
 September 7th 2020 | Javid Aliyev
 -- [23:32] Good documentation, pure functions, thoughtful architecture of the program and modules, from sqlite dbms to pure json, dir for application's database on a system (/opt/to-do-list-application)
+
+September 10th 2020 | Javid Aliyev
+-- [00:06] From /opt/to-do-list-application to $HOME/.to-do-list-application. So no need to
+-- use a sudo prefix before launching the app.py or db_creator.py

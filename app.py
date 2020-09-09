@@ -121,7 +121,7 @@ class App:
 			tools.error(f"no such command: '{command}'")
 
 	def main(self):
-		print("type ':help' to get all commands")
+		tools.info("type ':help' to get all commands")
 		while True:
 			self.id2task = self._id2task(Task.get(self.account))
 			npt = tools._sinput("~> ").strip()

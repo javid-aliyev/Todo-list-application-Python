@@ -3,7 +3,9 @@
 	-- * LICENSE
 	-- * Backups method
 	-- * Automatic determination of the presence or absence of a database in the system.
-	-- depending on the result, create a database
+	-- depending on the result, create a database (so no need to run db_creator.py before
+	-- app.py to overwrite or create a database)
+	-- * Encryption(at least hash) and archiving(compression) of the database
 
 #Remove:
 	-- * 
@@ -11,7 +13,6 @@
 #Rewrite-or-Change:
 	-- * REWRITE THE tools.process_task_or_index (+ rm, (un)done commands code)
 	-- * Join task.remove_accounts_tasks and task.remove_accounts_tasks_without_slot 
-	-- * /home/os.login()/.to-do-list-application for db
 
 #Hack-or-Bug:
 	-- *
@@ -21,7 +22,7 @@
 	-- * 
 
 ========================Nearly-Done-or-Done========================
--- * Store the database in a static dir on the system (/opt/to-do-list-application or 
--- /home/os.login()/.to-do-list-application)
+-- * Store the database in a static dir in the system (/opt/to-do-list-application)
+-- * From /opt/to-do-list-application to $HOME/.to-do-list-application
 -- * From sqlite to json
 -- * Good Documentation
