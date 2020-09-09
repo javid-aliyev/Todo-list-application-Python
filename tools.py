@@ -87,24 +87,27 @@ def process_task_or_index(id2task, command, account, fn, done=None):
 # ========
 # ========
 @red_output
-def warn(warning):
-	"""Displays warning
-	:param warning: str
+def warn(*args, **kwargs):
+	"""Displays a warning
+	:param args: list (stores str elements)
+	:param kwargs: dict (stores extra keyword params of the print function)
 	"""
-	print(warning)
+	print(*args, **kwargs)
 
 error = warn # error function
 
 @blue_output
-def info(information):
-	"""Displays information
-	:param info: str
+def info(*args, **kwargs):
+	"""Displays an information
+	:param args: list (stores str elements)
+	:param kwargs: dict (stores extra keyword params of the print function)
 	"""
-	print(information)
+	print(*args, **kwargs)
 
 @green_output
-def success(success):
-	"""Displays success message
-	:param success: str
+def success(*args, **kwargs):
+	"""Displays a success message
+	:param args: list (stores str elements)
+	:param kwargs: dict (stores extra keyword params of the print function)
 	"""
-	print(success)
+	print(*args, **kwargs)
