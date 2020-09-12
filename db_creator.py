@@ -13,9 +13,9 @@ from db_config import *
 def create_database():
 	# DB_PATH directory and DB_PATH/json
 	try:
-		os.chdir(DB_PARENT_DIR) # cd /opt
-		os.mkdir(DB_DIR_NAME) # mkdir to-do-list-application/
-		os.chdir(DB_PATH) # cd /opt/to-do-list-application
+		os.chdir(DB_PARENT_DIR) # cd $HOME
+		os.mkdir(DB_DIR_NAME) # mkdir .to-do-list-application/
+		os.chdir(DB_PATH) # cd $HOME/.to-do-list-application
 		os.mkdir("json")
 	except FileExistsError:
 		pass
