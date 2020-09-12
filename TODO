@@ -5,7 +5,8 @@
 	-- * Automatic determination of the presence or absence of a database in the system.
 	-- depending on the result, create a database (so no need to run db_creator.py before
 	-- app.py to overwrite or create a database)
-	-- * Encryption(at least hash) and archiving(compression) of the database
+	-- * Hash for accounts' passwords in db
+	-- * Hash for accounts' tasks in db
 
 #Remove:
 	-- * 

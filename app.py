@@ -98,8 +98,7 @@ class App:
 			if account == "":
 				tools.error("invalid login")
 				return
-			if password == real_password and \
-				(account in Account.get()):
+			if password == real_password:
 				self.account = account
 				tools.success(f"you logged in as {account}")
 			else:

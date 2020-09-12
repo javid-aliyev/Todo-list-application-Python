@@ -2,7 +2,7 @@
 | Folder/File    | Service                                         |
 |----------------|-------------------------------------------------|
 | doc/           | documentation                                   |
-| app.py         | program's entry point (run it, also needs sudo) |
+| app.py         | program's entry point (run it)                  |
 | account.py     | Account class                                   |
 | task.py        | Task class                                      |
 | decorators.py  | colored output decorators (colorama required)   |
