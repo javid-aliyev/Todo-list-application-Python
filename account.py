@@ -18,6 +18,7 @@ class Account:
 	@staticmethod
 	def create(login, password=""):
 		"""Creates an account in the database
+		Password would be hashed
 		:param login: str
 		:param password: str
 		"""
@@ -66,7 +67,7 @@ class Account:
 
 	@staticmethod
 	def get_password_by_login(login):
-		"""Returns a password of the account with such login
+		"""Returns a (hashed) password of the account with such login
 		:param login: str
 		:return: str
 		"""

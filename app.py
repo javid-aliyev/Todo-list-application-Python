@@ -1,4 +1,5 @@
 import sys
+import hashlib
 
 import tools
 from task import Task
@@ -13,7 +14,7 @@ class App:
 
 	def _id2task(self, tasks):
 		"""Returns a dict where key is index, value is tuple,
-		where [0] is task and [1] is status
+		where [0] is task and [1] is the status of a task
 		:param tasks: dict
 		:return: dict
 		"""
@@ -62,6 +63,7 @@ class App:
 		elif command == "addacc":
 			login = tools._sinput("login? ")
 			password = tools._secured_sinput("password(not required)? ")
+			password = hashlib.sha256(password.encode("utf8")).hexdigest()
 			if login.strip() == "":
 				tools.warn("login form is required")
 			else:
@@ -72,7 +74,8 @@ class App:
 		elif command == "rmacc":
 			account = tools._sinput("account to remove? ")
 			password = tools._secured_sinput("password of the account? ")
-			real_password = Account.get_password_by_login(account)
+			password = hashlib.sha256(password.encode("utf8")).hexdigest()
+			real_password = Account.get_password_by_login(account) # real hashed password
 
 			if account == "":
 				tools.error("invalid account")
@@ -94,7 +97,8 @@ class App:
 		elif command == "login":
 			account = tools._sinput("account to login? ")
 			password = tools._secured_sinput("password of the account? ")
-			real_password = Account.get_password_by_login(account)
+			password = hashlib.sha256(password.encode("utf8")).hexdigest()
+			real_password = Account.get_password_by_login(account) # real hashed password
 			if account == "":
 				tools.error("invalid login")
 				return

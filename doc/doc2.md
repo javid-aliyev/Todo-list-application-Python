@@ -13,3 +13,14 @@
 # Where is the database located?
 On UNIX-like systems, the database is located in the `$HOME/.to-do-list-application` (if you ran `python3 db_creator.py`) directory.
 JSON files and possible logs are stored here.
+
+# Data in db?
+`$HOME/.to-do-list-application/json`
+| File         | Service                                                 |
+|--------------|---------------------------------------------------------|
+| account.json | accounts and their hashed passwords                     |
+| tasks.json   | accounts' tasks and their statutes                      |
+| core.json    | data of program. the user may not pay attention to this |
+
+## Extra info
+1. Passwords in account.json are stored hashed

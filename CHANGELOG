@@ -12,3 +12,6 @@ September 7th 2020 | Javid Aliyev
 September 10th 2020 | Javid Aliyev
 -- [00:06] From /opt/to-do-list-application to $HOME/.to-do-list-application. So no need to
 -- use a sudo prefix before launching the app.py or db_creator.py
+
+September 12th 2020 | Javid Aliyev
+-- [23:47] Passwords of accounts are stored in the db hashed

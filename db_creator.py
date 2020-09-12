@@ -4,6 +4,7 @@ Creates json files in json/ dir
 
 import os
 import json
+import hashlib
 
 from tools import commands, info, success, warn
 from db_config import *
@@ -22,8 +23,9 @@ def create_database():
 
 	# json/accounts.json file
 	accounts_json = os.path.join(DB_PATH, "json", "accounts.json")
+	hashed_guest_password = hashlib.sha256("root".encode("utf8")).hexdigest()
 	with open(accounts_json, "wt") as jfl:
-		jfl.write(json.dumps({"guest": "root"}, sort_keys=True, indent=4))
+		jfl.write(json.dumps({"guest": hashed_guest_password}, sort_keys=True, indent=4))
 
 
 	# json/tasks.json file

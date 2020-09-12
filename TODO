@@ -5,8 +5,7 @@
 	-- * Automatic determination of the presence or absence of a database in the system.
 	-- depending on the result, create a database (so no need to run db_creator.py before
 	-- app.py to overwrite or create a database)
-	-- * Hash for accounts' passwords in db
-	-- * Hash for accounts' tasks in db
+	-- * Encryption for accounts' tasks in db
 
 #Remove:
 	-- * 
@@ -16,7 +15,11 @@
 	-- * Join task.remove_accounts_tasks and task.remove_accounts_tasks_without_slot 
 
 #Hack-or-Bug:
-	-- *
+	-- * Password to create or reset the database.
+	-- The hashed password is stored in db_creator.py.
+	-- A password is requested at startup db_creator.py and if
+	-- the hashes match then call create_db(). It is required
+	-- because anyone can reset a db. i can use a buit-in hashlib (sha256)
 
 ========================In-Progress========================
 @Working-at-the-moment:
@@ -27,3 +30,5 @@
 -- * From /opt/to-do-list-application to $HOME/.to-do-list-application
 -- * From sqlite to json
 -- * Good Documentation
+-- * Hash for accounts' passwords in db (hashlib.sha256)
+
