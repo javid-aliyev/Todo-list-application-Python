@@ -6,6 +6,11 @@
 	-- depending on the result, create a database (so no need to run db_creator.py before
 	-- app.py to overwrite or create a database)
 	-- * Encryption for accounts' tasks in db
+	-- * Version of the app with GUI. A separate file (appgui.py or guiapp.py) or
+	-- command or command line argument for app.py file which brings up an http
+	-- server on localhost. You can use the browser to manage tasks and accounts
+	-- on the local machine (where the server is running). Use the flask framework
+	-- * Tab autocomplete
 
 #Remove:
 	-- * 
