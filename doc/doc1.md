@@ -7,8 +7,7 @@
 | doc4.md | Other commands                                   |
 
 ## Extra information
-doc1.md - doc4.md covers a cli application version
-doc5.md - ???     covers a gui application version
+doc1.md - ?? covers a cli application version
 
 # How to run?
 First you need to run the file db_creator.py in the root folder of the project directory. It creates a project's database.
