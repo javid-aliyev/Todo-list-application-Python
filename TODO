@@ -24,7 +24,6 @@
 
 ========================In-Progress========================
 @Working-at-the-moment:
-	-- * 
 
 ========================Nearly-Done-or-Done========================
 -- * Store the database in a static dir in the system (/opt/to-do-list-application)
@@ -32,4 +31,4 @@
 -- * From sqlite to json
 -- * Good Documentation
 -- * Hash for accounts' passwords in db (hashlib.sha256)
-
+-- * Functions for getting json data from db and saving new data

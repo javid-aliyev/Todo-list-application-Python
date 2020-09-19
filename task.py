@@ -10,31 +10,25 @@ class Task:
 		"""Removes all tasks of an account (and its "slot")
 		:account: str
 		"""
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			data = json.load(jfl)
+		data = tools.get_json_from_file(DB_JSON_TASKS_PATH)
 
 		if account != "guest":
 			data.pop(account, None)
 			tools.warn(f"all tasks of '{account}' account were removed (and slot)")
 
-		# save new data
-		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(data, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_TASKS_PATH, data)
 
 	@staticmethod
 	def remove_accounts_tasks_without_slot(account):
 		"""Removes all tasks of an account (but stores its slot)
 		:account: str
 		"""
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			data = json.load(jfl)
+		data = tools.get_json_from_file(DB_JSON_TASKS_PATH)
 
 		data[account] = {}
 		tools.warn(f"all tasks of '{account}' account were removed")
 
-		# save new data
-		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(data, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_TASKS_PATH, data)
 
 	@staticmethod
 	def get(account="guest"):
@@ -44,8 +38,7 @@ class Task:
 		:param account: str
 		:return: dict
 		"""
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			data = json.load(jfl)
+		data = tools.get_json_from_file(DB_JSON_TASKS_PATH)
 
 		return data.get(account)
 
@@ -55,9 +48,7 @@ class Task:
 		:param task: str
 		:param account: str
 		"""
-		# loading the data
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			tasks = json.load(jfl)
+		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
 
 		if task in tasks[account]:
 			tools.error("already have this task in tasklist")
@@ -65,29 +56,22 @@ class Task:
 
 		tasks[account][task] = False # key is task, value is status
 
-		# save new data
-		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
 
 	@staticmethod
 	def create_slot_for(account):
 		"""Creates account: {} in tasks.json
 		:param account: str
 		"""
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			tasks = json.load(jfl)
+		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
 
 		tasks[account] = {}
 
-		# save new data
-		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
 
 	@staticmethod
 	def remove(task, account="guest"):
-		# loading the data
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			tasks = json.load(jfl)
+		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
 
 		if task in tasks[account]:
 			del tasks[account][task]
@@ -95,9 +79,7 @@ class Task:
 		else:
 			tools.error("no such task")
 
-		# load/save new data
-		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
 
 	@staticmethod
 	def mark_as(task, account="guest", done=False):
@@ -105,16 +87,14 @@ class Task:
 		:param task: str
 		:param account: str
 		"""
-		with open(DB_JSON_TASKS_PATH, "rt") as jfl:
-			tasks = json.load(jfl)
+		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+
 
 		if task in tasks[account]:
 			tasks[account][task] = done
 		else:
 			tools.error("no such task")
 
-		# save new data
-		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
 
 		

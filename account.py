@@ -1,4 +1,3 @@
-import json
 import os
 
 import tools
@@ -10,8 +9,7 @@ class Account:
 		"""Returns all existing accounts list
 		:return: list
 		"""
-		with open(DB_JSON_ACCOUNTS_PATH, "rt") as jfl:
-			data = json.load(jfl)
+		data = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
 
 		return list(data) # list(data.keys())
 
@@ -22,8 +20,7 @@ class Account:
 		:param login: str
 		:param password: str
 		"""
-		with open(DB_JSON_ACCOUNTS_PATH, "rt") as jfl:
-			accounts = json.load(jfl)
+		accounts = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
 
 		# add new account
 		if not login in accounts:
@@ -33,9 +30,7 @@ class Account:
 			tools.error("already have this account")
 			return
 
-		# save new data
-		with open(DB_JSON_ACCOUNTS_PATH, "wt") as jfl:
-			json.dump(accounts, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_ACCOUNTS_PATH, accounts)
 
 	@staticmethod
 	def remove(login):
@@ -47,8 +42,7 @@ class Account:
 			tools.error("guest account can not be removed")
 			return
 
-		with open(DB_JSON_ACCOUNTS_PATH, "rt") as jfl:
-			accounts = json.load(jfl)
+		accounts = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
 
 		# removing the account from the database.
 		# dict.pop returns the value of just
@@ -59,9 +53,7 @@ class Account:
 			tools.warn(f"no such account '{login}'")
 			return
 
-		# new data
-		with open(DB_JSON_ACCOUNTS_PATH, "wt") as jfl:
-			json.dump(accounts, jfl, indent=4)
+		tools.save_json_to_file(DB_JSON_ACCOUNTS_PATH, accounts)
 
 		tools.warn(f"account '{login}' has been just removed")
 
@@ -71,8 +63,6 @@ class Account:
 		:param login: str
 		:return: str
 		"""
-		# get data
-		with open(DB_JSON_ACCOUNTS_PATH, "rt") as jfl:
-			data = json.load(jfl)
+		data = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
 
 		return data.get(login)
