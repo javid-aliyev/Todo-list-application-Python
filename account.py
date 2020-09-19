@@ -35,7 +35,7 @@ class Account:
 
 		# save new data
 		with open(DB_JSON_ACCOUNTS_PATH, "wt") as jfl:
-			json.dump(accounts, jfl, sort_keys=True, indent=4)
+			json.dump(accounts, jfl, indent=4)
 
 	@staticmethod
 	def remove(login):
@@ -61,7 +61,7 @@ class Account:
 
 		# new data
 		with open(DB_JSON_ACCOUNTS_PATH, "wt") as jfl:
-			json.dump(accounts, jfl, sort_keys=True, indent=4)
+			json.dump(accounts, jfl, indent=4)
 
 		tools.warn(f"account '{login}' has been just removed")
 

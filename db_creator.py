@@ -25,7 +25,7 @@ def create_database():
 	accounts_json = os.path.join(DB_PATH, "json", "accounts.json")
 	hashed_guest_password = hashlib.sha256("root".encode("utf8")).hexdigest()
 	with open(accounts_json, "wt") as jfl:
-		jfl.write(json.dumps({"guest": hashed_guest_password}, sort_keys=True, indent=4))
+		jfl.write(json.dumps({"guest": hashed_guest_password}, indent=4))
 
 
 	# json/tasks.json file
@@ -37,7 +37,7 @@ def create_database():
 					"test task #1": False,
 					"test task #2": False
 				}
-			}, sort_keys=True, indent=4)
+			}, indent=4)
 		)
 
 
@@ -45,7 +45,7 @@ def create_database():
 	core_json = os.path.join(DB_PATH, "json", "core.json")
 	with open(core_json, "wt") as jfl:
 		jfl.write(json.dumps(
-			{"commands": commands}, sort_keys=True, indent=4
+			{"commands": commands}, indent=4
 		))
 
 

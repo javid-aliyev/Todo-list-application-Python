@@ -19,7 +19,7 @@ class Task:
 
 		# save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(data, jfl, sort_keys=True, indent=4)
+			json.dump(data, jfl, indent=4)
 
 	@staticmethod
 	def remove_accounts_tasks_without_slot(account):
@@ -34,7 +34,7 @@ class Task:
 
 		# save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(data, jfl, sort_keys=True, indent=4)
+			json.dump(data, jfl, indent=4)
 
 	@staticmethod
 	def get(account="guest"):
@@ -67,7 +67,7 @@ class Task:
 
 		# save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, sort_keys=True, indent=4)
+			json.dump(tasks, jfl, indent=4)
 
 	@staticmethod
 	def create_slot_for(account):
@@ -81,7 +81,7 @@ class Task:
 
 		# save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, sort_keys=True, indent=4)
+			json.dump(tasks, jfl, indent=4)
 
 	@staticmethod
 	def remove(task, account="guest"):
@@ -97,7 +97,7 @@ class Task:
 
 		# load/save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, sort_keys=True, indent=4)
+			json.dump(tasks, jfl, indent=4)
 
 	@staticmethod
 	def mark_as(task, account="guest", done=False):
@@ -115,6 +115,6 @@ class Task:
 
 		# save new data
 		with open(DB_JSON_TASKS_PATH, "wt") as jfl:
-			json.dump(tasks, jfl, sort_keys=True, indent=4)
+			json.dump(tasks, jfl, indent=4)
 
 		
