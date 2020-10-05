@@ -21,3 +21,5 @@ $ python3 app.py
 ```shell
 $ python3 db_creator.py
 ```
+
+The password is `dbpass`.
