@@ -6,6 +6,12 @@
 | doc3.md | Accounts' and Tasks' commands & info             |
 | doc4.md | Other commands                                   |
 
+# How to install requirements?
+Run this command:
+```shell
+$ pip3 install -r requirements.txt
+```
+
 # How to run?
 First you need to run the file db_creator.py in the root folder of the project directory. It creates a project's database.
 Then you can launch the app itself (app.py).
