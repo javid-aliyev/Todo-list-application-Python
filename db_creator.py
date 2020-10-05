@@ -6,8 +6,8 @@ import os
 import json
 import hashlib
 
-from tools import commands, info, success, warn
-from db_config import *
+from tools import info, success, warn
+from config import *
 
 
 def create_database():
@@ -39,14 +39,6 @@ def create_database():
 				}
 			}, indent=4)
 		)
-
-
-	# json/core.json file
-	core_json = os.path.join(DB_PATH, "json", "core.json")
-	with open(core_json, "wt") as jfl:
-		jfl.write(json.dumps(
-			{"commands": commands}, indent=4
-		))
 
 
 print(f"Do you want to create or overwrite the database({DB_PATH})? [y/n]")

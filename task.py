@@ -1,7 +1,7 @@
 import os
 
 import tools
-from db_config import *
+from config import *
 
 class Task:
 	@staticmethod
@@ -9,25 +9,25 @@ class Task:
 		"""Removes all tasks of an account (and its "slot")
 		:account: str
 		"""
-		data = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		data = tools.get_json_from_file(TASKS_JSON)
 
 		if account != "guest":
 			data.pop(account, None)
 			tools.warn(f"all tasks of '{account}' account were removed (and slot)")
 
-		tools.save_json_to_file(DB_JSON_TASKS_PATH, data)
+		tools.save_json_to_file(TASKS_JSON, data)
 
 	@staticmethod
 	def remove_accounts_tasks_without_slot(account):
 		"""Removes all tasks of an account (but stores its slot)
 		:account: str
 		"""
-		data = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		data = tools.get_json_from_file(TASKS_JSON)
 
 		data[account] = {}
 		tools.warn(f"all tasks of '{account}' account were removed")
 
-		tools.save_json_to_file(DB_JSON_TASKS_PATH, data)
+		tools.save_json_to_file(TASKS_JSON, data)
 
 	@staticmethod
 	def get(account="guest"):
@@ -37,7 +37,7 @@ class Task:
 		:param account: str
 		:return: dict
 		"""
-		data = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		data = tools.get_json_from_file(TASKS_JSON)
 
 		return data.get(account)
 
@@ -47,7 +47,7 @@ class Task:
 		:param task: str
 		:param account: str
 		"""
-		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		tasks = tools.get_json_from_file(TASKS_JSON)
 
 		if task in tasks[account]:
 			tools.error("already have this task in tasklist")
@@ -55,22 +55,22 @@ class Task:
 
 		tasks[account][task] = False # key is task, value is status
 
-		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
+		tools.save_json_to_file(TASKS_JSON, tasks)
 
 	@staticmethod
 	def create_slot_for(account):
 		"""Creates account: {} in tasks.json
 		:param account: str
 		"""
-		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		tasks = tools.get_json_from_file(TASKS_JSON)
 
 		tasks[account] = {}
 
-		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
+		tools.save_json_to_file(TASKS_JSON, tasks)
 
 	@staticmethod
 	def remove(task, account="guest"):
-		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		tasks = tools.get_json_from_file(TASKS_JSON)
 
 		if task in tasks[account]:
 			del tasks[account][task]
@@ -78,7 +78,7 @@ class Task:
 		else:
 			tools.error("no such task")
 
-		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
+		tools.save_json_to_file(TASKS_JSON, tasks)
 
 	@staticmethod
 	def mark_as(task, account="guest", done=False):
@@ -86,7 +86,7 @@ class Task:
 		:param task: str
 		:param account: str
 		"""
-		tasks = tools.get_json_from_file(DB_JSON_TASKS_PATH)
+		tasks = tools.get_json_from_file(TASKS_JSON)
 
 
 		if task in tasks[account]:
@@ -94,6 +94,6 @@ class Task:
 		else:
 			tools.error("no such task")
 
-		tools.save_json_to_file(DB_JSON_TASKS_PATH, tasks)
+		tools.save_json_to_file(TASKS_JSON, tasks)
 
 		

@@ -38,4 +38,4 @@ Write \ and then the full task name or just write index of a task.
 for example: \buy milk, 2, 12, \do homework.
 
 ## Task status
-Task statuses: `done` or `in-progress`
+Task statuses: `done`(complete) or `in-progress`

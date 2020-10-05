@@ -1,7 +1,7 @@
 import os
 
 import tools
-from db_config import *
+from config import *
 
 class Account:
 	@staticmethod
@@ -9,7 +9,7 @@ class Account:
 		"""Returns all existing accounts list
 		:return: list
 		"""
-		data = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
+		data = tools.get_json_from_file(ACCOUNTS_JSON)
 
 		return list(data) # list(data.keys())
 
@@ -20,7 +20,7 @@ class Account:
 		:param login: str
 		:param password: str
 		"""
-		accounts = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
+		accounts = tools.get_json_from_file(ACCOUNTS_JSON)
 
 		# add new account
 		if not login in accounts:
@@ -30,7 +30,7 @@ class Account:
 			tools.error("already have this account")
 			return
 
-		tools.save_json_to_file(DB_JSON_ACCOUNTS_PATH, accounts)
+		tools.save_json_to_file(ACCOUNTS_JSON, accounts)
 
 	@staticmethod
 	def remove(login):
@@ -42,7 +42,7 @@ class Account:
 			tools.error("guest account can not be removed")
 			return
 
-		accounts = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
+		accounts = tools.get_json_from_file(ACCOUNTS_JSON)
 
 		# removing the account from the database.
 		# dict.pop returns the value of just
@@ -53,7 +53,7 @@ class Account:
 			tools.warn(f"no such account '{login}'")
 			return
 
-		tools.save_json_to_file(DB_JSON_ACCOUNTS_PATH, accounts)
+		tools.save_json_to_file(ACCOUNTS_JSON, accounts)
 
 		tools.warn(f"account '{login}' has been just removed")
 
@@ -63,6 +63,6 @@ class Account:
 		:param login: str
 		:return: str
 		"""
-		data = tools.get_json_from_file(DB_JSON_ACCOUNTS_PATH)
+		data = tools.get_json_from_file(ACCOUNTS_JSON)
 
 		return data.get(login)

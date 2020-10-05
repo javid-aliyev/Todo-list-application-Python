@@ -14,7 +14,6 @@
 #Rewrite-or-Change:
 	-- * REWRITE THE tools.process_task_or_index (+ rm, (un)done commands code)
 	-- * Join task.remove_accounts_tasks and task.remove_accounts_tasks_without_slot
-	-- * config.py storing all project configuration instead of db_config.py storing db config
 
 #Hack-or-Bug:
 	-- * Password to create or reset the database.
@@ -33,3 +32,4 @@
 -- * Good Documentation
 -- * Hash for accounts' passwords in db (hashlib.sha256)
 -- * Functions for getting json data from db and saving new data
+-- * File config.py storing all project configuration instead of db_config.py storing db config
