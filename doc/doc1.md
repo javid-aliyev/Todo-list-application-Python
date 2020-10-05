@@ -7,12 +7,11 @@
 | doc4.md | Other commands                                   |
 
 # How to install requirements?
-Run this command:
 ```shell
 $ pip3 install -r requirements.txt
 ```
 
-# How to run?
+# How to run the application?
 ```shell
 $ python3 app.py
 ```
