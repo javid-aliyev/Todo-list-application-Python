@@ -13,10 +13,11 @@ $ pip3 install -r requirements.txt
 ```
 
 # How to run?
-First you need to run the file db_creator.py in the root folder of the project directory. It creates a project's database.
-Then you can launch the app itself (app.py).
+```shell
+$ python3 app.py
+```
 
+# How to overwrite(reset) db?
 ```shell
 $ python3 db_creator.py
-$ python3 app.py
 ```

@@ -41,12 +41,12 @@ def create_database():
 		)
 
 
-print(f"Do you want to create or overwrite the database({DB_PATH})? [y/n]")
-warn("!!that process will overwrite the database!!")
-npt = input("")
-if len(npt) > 0 and npt[0].lower() != "n":
-	create_database()
-	success("(+) The database was created or overwritten")
-else:
-	info("(=) Abort")
-	
+if __name__ == "__main__":
+	print(f"Do you want to create or overwrite the database({DB_PATH})? [y/n]")
+	warn("!!that process will overwrite the database!!")
+	npt = input("")
+	if len(npt) > 0 and npt[0].lower() != "n":
+		create_database()
+		success("(+) The database was created or overwritten")
+	else:
+		info("(=) Abort")

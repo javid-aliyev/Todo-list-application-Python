@@ -2,9 +2,6 @@
 #Add:
 	-- * LICENSE
 	-- * Backups method
-	-- * Automatic determination of the presence or absence of a database in the system.
-	-- depending on the result, create a database (so no need to run db_creator.py before
-	-- app.py to overwrite or create a database)
 	-- * Encryption for accounts' tasks in db
 	-- * Tab autocomplete
 
@@ -33,3 +30,6 @@
 -- * Hash for accounts' passwords in db (hashlib.sha256)
 -- * Functions for getting json data from db and saving new data
 -- * File config.py storing all project configuration instead of db_config.py storing db config
+-- * Automatic determination of the presence or absence of a database in the system.
+-- depending on the result, create a database (so no need to run db_creator.py before
+-- app.py to overwrite or create a database)

@@ -1,17 +1,19 @@
-June 12th 2020 | Javid Aliyev
+June 12th 2020 | Javid Aliyev <lorderer12@gmail.com>
 -- Deny guest account deletion
 -- [15:05] Make the :lsaccs show on which account the user
 is currently (mark in green)
 
-June 14th 2020 | Javid Aliyev
+June 14th 2020 | Javid Aliyev <lorderer12@gmail.com>
 -- [00:08] SQL Injection Protection {for some reason it is impossible to make sql injection so i do not need to write sql injection protection. it is already here}
 
-September 7th 2020 | Javid Aliyev
+September 7th 2020 | Javid Aliyev <lorderer12@gmail.com>
 -- [23:32] Good documentation, pure functions, thoughtful architecture of the program and modules, from sqlite dbms to pure json, dir for application's database on a system (/opt/to-do-list-application)
 
-September 10th 2020 | Javid Aliyev
--- [00:06] From /opt/to-do-list-application to $HOME/.to-do-list-application. So no need to
--- use a sudo prefix before launching the app.py or db_creator.py
+September 10th 2020 | Javid Aliyev <lorderer12@gmail.com>
+-- [00:06] From /opt/to-do-list-application to $HOME/.to-do-list-application. So no need to use a sudo prefix before launching the app.py or db_creator.py
 
-September 12th 2020 | Javid Aliyev
+September 12th 2020 | Javid Aliyev <lorderer12@gmail.com>
 -- [23:47] Passwords of accounts are stored in the db hashed
+
+October 6th 2020 | Javid Aliyev <lorderer12@gmail.com>
+-- [01:20] Automatic determination of the presence or absence of a database

@@ -115,6 +115,10 @@ def success(*args, **kwargs):
 # ================================
 # ================================
 # ================================
+def db_exists():
+	"""Returns True if a db exists, otherwise False"""
+	return os.path.exists(config.DB_PATH)
+
 def process_task_or_index(id2task, command, account, fn, done=None):
 	# FIX: THIS FUNCTION IS NOT READABLE
 	if command == "rm":

@@ -2,6 +2,7 @@ import sys
 import hashlib
 
 import tools
+import db_creator
 from task import Task
 from account import Account
 
@@ -131,4 +132,7 @@ class App:
 			self._execute_command(npt)
 
 if __name__ == "__main__":
+	if not tools.db_exists():
+		tools.info("database was created")
+		db_creator.create_database()
 	App(sys.argv)
