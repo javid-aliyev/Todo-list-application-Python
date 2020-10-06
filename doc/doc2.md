@@ -12,15 +12,13 @@
 | requirements.txt | requirements file                             |
 
 # Where is the database located?
-On UNIX-like systems, the database is located in the `$HOME/.to-do-list-application` (if you ran `python3 db_creator.py`) directory.
-JSON files and possible logs are stored here.
+It is located in the home dir: `$HOME/.to-do-list-application`
 
 # Data in db?
-`$HOME/.to-do-list-application/json`
-| File         | Service                                                 |
-|--------------|---------------------------------------------------------|
-| account.json | accounts and their hashed passwords                     |
-| tasks.json   | accounts' tasks and their statutes                      |
+| File              | Service                                                 |
+|-------------------|---------------------------------------------------------|
+| json/account.json | accounts and their hashed passwords                     |
+| json/tasks.json   | accounts' tasks and their statutes                      |
 
 ## Extra info
 1. Passwords in account.json are hashed
