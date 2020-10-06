@@ -1,6 +1,8 @@
 # Todo-list-application-Python
 To-Do List Application
 
+Smart task manager with command line interface (CLI)
+
 # Documentation
 doc/
 
