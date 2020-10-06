@@ -1,5 +1,3 @@
-import os
-
 import tools
 from config import *
 
